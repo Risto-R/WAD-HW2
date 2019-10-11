@@ -27,6 +27,38 @@ $(function () {
         $("#add-course").toggle();
     });
 
+    $("#save-course").click(function () {
+        //Get the values from the fields
+        let title = ($("#title").val());
+        let semester = ($("#semester").val());
+        let grade = ($("#grade").val());
+
+        //Add the new course
+        courses.push(new Course(title,semester,grade));
+
+        //Add that course to the table
+        $("#courses tr:last").after("<tr>"
+            +("<td>"+($("#courses tr").length+1)+"</td>")
+            +("<td>"+courses[courses.length-1].title+"</td>")
+            +("<td>"+courses[courses.length-1].semester+"</td>")
+            +("<td>"+courses[courses.length-1].grade+"</td>")
+            +"</tr>")
+
+        //Resetting the form and hiding it
+        $("#title").val("");
+        $("#semester").val("");
+        $("#grade").val("");
+        $("#add-course").toggle();
+    });
+
+    $("#cancel-course").click(function () {
+        //Resetting the form and hiding it
+        $("#title").val("");
+        $("#semester").val("");
+        $("#grade").val("");
+        $("#add-course").toggle();
+    });
+
     function init() {
         // Add user info to html
         $("#name").text(user.firstname+" "+user.lastname);
