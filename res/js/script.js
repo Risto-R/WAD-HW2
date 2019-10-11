@@ -38,7 +38,7 @@ $(function () {
 
         //Add that course to the table
         $("#courses tr:last").after("<tr>"
-            +("<td>"+($("#courses tr").length+1)+"</td>")
+            +("<td>"+($("#courses tr").length)+"</td>")
             +("<td>"+courses[courses.length-1].title+"</td>")
             +("<td>"+courses[courses.length-1].semester+"</td>")
             +("<td>"+courses[courses.length-1].grade+"</td>")
