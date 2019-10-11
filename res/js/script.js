@@ -1,5 +1,5 @@
 $(function () {
-    var user = new User("Joe", "Mama", 10/10/1999, "Faculty of Science and Technology", 3.5);
+    var user = new User("Joe", "Mama", '10/10/1999', "Faculty of Science and Technology", 3.5);
     var courses = [
         new Course("Web Application Development", 3, 100),
         new Course("Introduction to Data Science", 3, 91),
@@ -44,6 +44,8 @@ $(function () {
             +("<td>"+courses[courses.length-1].grade+"</td>")
             +"</tr>")
 
+        refreshGPA();
+
         //Resetting the form and hiding it
         $("#title").val("");
         $("#semester").val("");
@@ -58,6 +60,35 @@ $(function () {
         $("#grade").val("");
         $("#add-course").toggle();
     });
+
+    function refreshGPA(){
+        $('#gpa strong').text(calculateGPA())
+    }
+
+    function calculateGPA(){
+        let totalsum = 0;
+        for(let i=0; i < courses.length; i++){
+            if(courses[i].grade > 90){
+                totalsum+=4;
+            }
+            if(courses[i].grade > 80 && courses[i].grade <= 90){
+                totalsum += 3;
+            }
+            if(courses[i].grade > 70 && courses[i].grade <= 80){
+                totalsum += 2;
+            }
+            if(courses[i].grade > 60 && courses[i].grade <= 70){
+                totalsum += 1;
+            }
+            if(courses[i].grade > 50 && courses[i].grade <= 60){
+                totalsum += 0.5;
+            }
+            else{
+                totalsum += 0;
+            }
+        }
+        return totalsum/courses.length;
+    }
 
     function init() {
         // Add user info to html
